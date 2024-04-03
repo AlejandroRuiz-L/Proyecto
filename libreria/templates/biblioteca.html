@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca</title>
+</head>
+
+<body>
+  {% include 'layout/app_header.html' %}
+  <p>Total de libros: {{size}}</p>
+  <ul>
+  <div class="banner">
+    <div class = 'banner__in'>
+    {% for portada, instacia in books1.items %}
+    {% for libro, generos in instacia.items %}
+    <li>
+        <div class="contenedor">
+          <a><img src="../static/{{portada}}" alt="Portada" class="portada"></a>
+          <div class="contenedor__info">
+        <p class="title">{{ libro.title }}</p>
+            <div class = "contenedor__info">
+        Autor: {{ libro.author.first_name }} {{ libro.author.last_name }}
+      <div>
+			  Género: {% for genero in generos %}
+		      -{{genero}}
+	      {%endfor%}
+		  </div>
+		  <form action="{% url 'Book' %}" method="get">
+            <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
+	        <button>Ver más</button>
+		  </form>
+		  </div>
+		  </div>
+		  </div>
+		  </li>
+	    {%endfor%}
+	  {% endfor %}
+	  </div>
+	  <div class = 'banner__in'>
+    {% for portada, instacia in books2.items %}
+	  {% for libro, generos in instacia.items %}
+	  <li>
+        <div class="contenedor">
+          <a><img src="../static/{{portada}}" alt="Portada" class="portada"></a>
+          <div class="contenedor__info">
+		    <p class="title">{{ libro.title }}</p>
+            <div class="contenedor__info">
+			  Autor: {{ libro.author.first_name }} {{ libro.author.last_name }}
+			<div>
+			  Género: {% for genero in generos %}
+		      -{{genero}}
+	      {%endfor%}
+		  </div>
+		  <form action="{% url 'Book' %}" method="get">
+            <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
+	        <button>Ver más</button>
+		  </form>
+		  </div>
+		  </div>
+		  </div>
+		  </li>
+	    {%endfor%}
+	  {% endfor %}
+	  </div>
+	  <div class = 'banner__in'>
+    {% for portada, instacia in books3.items %}
+	  {% for libro, generos in instacia.items %}
+	  <li>
+        <div class="contenedor">
+          <a><img src="../static/{{portada}}" alt="Portada" class="portada"></a>
+          <div class="contenedor__info">
+		    <p class="title">{{ libro.title }}</p>
+            <div class="contenedor__info">
+			  Autor: {{ libro.author.first_name }} {{ libro.author.last_name }}
+			<div>  
+			  Género: {% for genero in generos %}
+		      -{{genero}}
+	      {%endfor%}
+		  </div>
+		  <form action="{% url 'Book' %}" method="get">
+            <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
+	        <button>Ver más</button>
+		  </form>
+		  </div>
+		  </div>
+		  </div>
+		  </li>
+	    {%endfor%}
+	  {% endfor %}
+	  </div>
+	  </div>
+	</ul>
+
+  {% include 'layout/app_footer.html' %}

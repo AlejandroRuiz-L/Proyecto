@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca</title>
+</head>
+
+<body>
+  {% include 'layout/app_header.html' %}
+  <p>Total de libros: {{size}}</p>
+  <ul>
+  <div class = 'banner'>
+    <div class = 'banner__in'>
+    {% for p, l in books1.items %}
+	  <li>
+          <div class="contenedor">
+            <img src="../static/{{ p }}" alt="Portada" class="portada">
+            <div class="contenedor__info">
+              <p>ID: {{ l.id}}</p>
+			  <p>Titulo: {{ l.title }}</p>
+              <p>Autor: {{ l.author.first_name }} {{ l.author.last_name }}</p>
+			</div>
+          </div>
+      </li>
+	  {% endfor %}
+	  </div>
+	  <div class = 'banner__in'>
+	  {% for p, l in books2.items %}
+	  <li>
+          <div class="contenedor">
+            <img src="../static/{{ p }}" alt="Portada" class="portada">
+            <div class="contenedor__info">
+			  <p>ID: {{ l.id}}</p>
+              <p>Titulo: {{ l.title }}</p>
+              <p>Autor: {{ l.author.first_name }} {{ l.author.last_name }}</p>
+			</div>
+          </div>
+      </li>
+	  {% endfor %}
+	  </div>
+	  <div class = 'banner__in'>
+	  {% for p, l in books3.items %}
+	  <li>
+          <div class="contenedor">
+            <img src="../static/{{ p }}" alt="Portada" class="portada">
+            <div class="contenedor__info">
+			  <p>ID: {{ l.id}}</p>
+              <p>Titulo: {{ l.title }}</p>
+              <p>Autor: {{ l.author.first_name }} {{ l.author.last_name }}</p>
+			</div>
+          </div>
+      </li>
+	  {% endfor %}
+	  </div>
+	</div>
+	</ul>
+
+  {% include 'layout/app_footer.html' %}

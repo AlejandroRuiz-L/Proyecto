@@ -1,0 +1,28 @@
+{% include 'layout/app_header.html' %}
+  <h1>Información del libro</h1><br><br>
+    {% for portada, instacias in book.items %}
+      {% for libro, generos in instacias.items %}
+        <div class="banner__in">
+          <img src="../static/{{portada}}" alt="Portada" class="big__portada">
+          <div class="contenedor__info">
+            <p class="title">{{ libro.title }}</p>
+            <div class = "contenedor__info">
+              <h4>Autor:</h4>
+              <p>{{ libro.author.first_name }} {{ libro.author.last_name }}</p>
+            <div class="contenedor__info">
+              <h4>Género:</h4>
+              <p>{% for genero in generos %}
+                -{{genero}}
+                  {%endfor%}</p>
+            </div>
+            <div class="contenedor__info">
+            <h4>Descripción:</h4>
+            <p>{{libro.summary}}</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      {%endfor%}
+    {% endfor %}
+{% include 'layout/app_footer.html' %}
+

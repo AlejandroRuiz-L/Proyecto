@@ -1,0 +1,34 @@
+{%load static%}
+{% include 'layout/app_header.html' %}
+
+  <section>
+  <p>Se encontaron '{{ cnt }}' libros.</p>
+    <ul>
+    {% for portada, instancias in search.items %}
+    {% for generos, libro in instancias.items %}
+    <li>
+    <div class="contenedor">
+          <a><img src="../static/{{portada}}" alt="Portada" class="portada"></a>
+          <div class="contenedor__info">
+        <p class="title">{{ libro.title }}</p>
+            <div class = "contenedor__info">
+        Autor: {{ libro.author.first_name }} {{ libro.author.last_name }}
+      <div>
+        Género: {% for genero in generos %}
+          -{{genero}}
+        {%endfor%}
+      </div>
+      <form action="{% url 'Book' %}" method="get">
+        <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
+        <button>Ver más</button>
+      </form>
+      {%endfor%}
+      {%endfor%}
+      </div>
+      </div>
+      </div>
+      </li>
+	</ul>
+  </section>
+
+{% include 'layout/app_footer.html' %}

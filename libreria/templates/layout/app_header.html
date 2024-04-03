@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <title>Header</title>
+</head>
+<body>
+  <header class="header">
+    <img src="{% static 'assets/logo_biblioteca.png' %}" alt="Logo libreria" class="logo">
+    <a href="{% url 'Home' %}"><button class="boton">Inicio</button></a>
+    <a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
+  </header>
+  <aside class="aside">
+    <div class="perfil">
+      <img src="{% static 'assets/face_1.jpg' %}" alt="Foto de perfil" class="perfil__foto">
+      <p>Brayan Alejandro Ruiz Lenis</p>
+    </div>
+	  <form action="{% url 'Buscar' %}" method='get' >
+	    <div>
+	    <label for='buscar'>Buscas un libro en particular?</label>
+	    <input type="text" id="buscar" name="buscar_libro" placeholder="Nombre del libro" />
+	    <button class="form__boton">Buscar</button>
+		</div>
+	  </form>
+  </aside>

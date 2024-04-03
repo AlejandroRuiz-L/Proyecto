@@ -1,0 +1,8 @@
+{% include 'layout/app_header.html' %}
+  {% if validado %}
+    <p>El registro fue exitoso. Puede continuar a la página de inicio.</p>
+    <a href="{% url 'Home' %}">Ir al inicio</a>
+  {% else %}
+    <p>No se pudo completar el registro. Intentelo nuevamente.</p>
+    <a href="{% url 'Registro' %}">Registrarse nuevamente</a>
+{% include 'layout/app_footer.html' %}

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <title>Registro</title>
+</head>
+<body>
+  {{a}}
+  <header class="header">
+    <img src="{% static 'assets/logo_biblioteca.png'%}" alt="logo_biblioteca" class="logo">
+    <a href="{% url 'Home' %}"><button class="boton">Inicio</button></a>
+  </header>
+  <section>
+  <div class="cont__form">
+    <form action="{% url 'Validar' %}" method="post" class="formulario">
+    {% csrf_token %}  
+	  <div class="form__item">
+	    <label for="user">Usuario:</label>
+		<input type="text" id="user" name="user_name" required />
+	  </div>
+	  <div class="form__item">
+	    <label for="password_try">Contraseña:</label>
+		<input type="password" id="passwowrd_try" name="user_password_try" required />
+	  </div>
+	  <div class="form__item">
+	    <label for="password_except">Repite la contraseña:</label>
+		<input type="password" id="passwowrd_except" name="user_password_except" required />
+	  </div>
+	  <div class="form__item">
+	    <label for="email">Email:</label>
+		<input type="email" id="email" name="user_email" required />
+	  </div>
+      <p>Gustos (opcional):</p>
+	    <div class="form__genero">
+          {% for genero in generos %}
+		  <div>
+            <label for="{{genero}}">{{genero}}</label>
+		    <input type="checkbox" id="likes" name="{{genero}}" />
+	      </div>
+		  {%endfor%}
+	    </div>
+	  <div class="banner">
+	    <button type="submmit" class="form__boton">Registrarse</button>
+	    <button type="reset" class="form__boton">Restablecer</button>
+	  </div>
+	  <div class="form__item">
+	    <p>Ya tienes una cuenta?</p>
+		<a href="{% url 'Login' %}">Iniciar sesion</a>
+	  </div>
+	</form>
+	</div>
+  </section>
+{% include 'layout/app_footer.html' %}

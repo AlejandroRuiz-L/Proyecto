@@ -1,0 +1,47 @@
+{% include 'layout/app_header.html' %}
+
+  <p>Consulta:</p>
+  <ul>
+  <div class="banner" >
+  <div class="banner__in">
+  {% for p, i in libros.items%}
+    {% for l, g in i.items %}
+      <li class="contenedor">
+	    <a><img src="../static/{{p}}" class="portada"><a><br>
+	    <div class="contenedor__info">
+		  <p class="title">{{l.title}}</p>
+		  <div>
+		    Autor: {{l.author.firstname}} {{l.author.lastname}}
+	        genero: {%for k in g%}
+	        -{{k.name}}
+	        {%endfor%}
+		  </div>
+		</div>
+	  </li>
+	  {%endfor%}
+  {%endfor%}
+  </div>
+  <div class="banner__in">
+  {% for p, i in libros.items%}
+    {% for l, g in i.items %}
+      <li class="banner__in" >portada: {{p}}<br>
+	  titulo: {{l.title}} autor: {{l.author}}<br>
+	  genero: {%for k in g%}
+	  {{k.name}}</li>
+	    {%endfor%}
+	  {%endfor%}
+  {%endfor%}
+  </div>
+  <div class="banner__in">
+  {% for p, i in libros.items%}
+    {% for l, g in i.items %}
+      <li class="banner__in" >portada: {{p}}<br>
+	  titulo: {{l.title}} autor: {{l.author}}<br>
+	  genero: {%for k in g%}
+	  {{k.name}}</li>
+	    {%endfor%}
+	  {%endfor%}
+  {%endfor%}
+  </div>
+  </div>
+  </ul>

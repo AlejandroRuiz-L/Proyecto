@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <title>Biblioteca Virtual</title>
+</head>
+
+<body>
+  <header class="header">
+    <img src="{% static 'assets/logo_biblioteca.png' %}" class="logo" alt="Logo Biblioteca">
+	<a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
+	<a href="{% url 'Login' %}"><button class="boton">Iniciar sesion</button></a>
+    <a href="{% url 'Registro' %}"><button class="boton">Registrarse</button></a>
+  </header>
+  <main>
+    <section>
+	  <h2>Recomendados</h2>
+	  <ul class="banner__in">
+	    {% for portada, instancias in generos.items %}
+        {% for libro, genero in instancias.items %}
+		{% for gen in genero %}
+		  {% if 'Romance' == gen.name %}
+            <li class = "contenedor">
+			  <img src="static/{{portada}}" class="portada">
+			  <div class="contenedor__info">
+			    <p class="title">{{libro.title}}</p>
+			    {{libro.author.first_name}} {{libro.author.last_name}}
+			    <form action="{% url 'Book' %}" method="get">
+				  <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
+				  <button>Ver más</button>
+				</form>
+			  </div>
+			</li>
+		  {% endif %}
+		{%endfor%}
+        {%endfor%}
+		{%endfor%}
+      </ul>
+    </section>
+	<section>
+	  <br><br>
+	  <h2>Fantasía</h2>
+	  <ul>
+	    {% for portada, instancias in generos.items %}
+        {% for libro, genero in instancias.items %}
+		{% for gen in genero %}
+		  {% if 'Fantasía' == gen.name %}
+            <li class = "contenedor">
+			  <img src="static/{{portada}}" class="portada">
+			  <div class="contenedor__info">
+			    <p class="title">{{libro.title}}</p>
+			    {{libro.author.first_name}} {{libro.author.last_name}}
+			    <form action="{% url 'Book' %}" method="get">
+				  <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
+				  <button>Ver más</button>
+				</form>
+			  </div>
+			</li>
+		  {% endif %}
+		{%endfor%}
+        {%endfor%}
+		{%endfor%}
+	  </ul>
+	</section>
+  </main>
+  {% include 'layout/app_footer.html' %}

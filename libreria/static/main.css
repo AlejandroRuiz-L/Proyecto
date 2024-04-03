@@ -1,0 +1,240 @@
+/*
+/* A font family name and a generic family name 
+font-family: "Gill Sans Extrabold", sans-serif;
+font-family: "Goudy Bookletter 1911", sans-serif;
+
+/* A generic family name only
+font-family: serif;
+font-family: sans-serif;
+font-family: monospace;
+font-family: cursive;
+font-family: fantasy;
+font-family: system-ui;
+font-family: ui-serif;
+font-family: ui-sans-serif;
+font-family: ui-monospace;
+font-family: ui-rounded;
+font-family: emoji;
+font-family: math;
+font-family: fangsong;
+/* Global values
+font-family: inherit;
+font-family: initial;
+font-family: revert;
+font-family: revert-layer;
+font-family: unset;
+*/
+.fantasy{
+  font-family: fantasy;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+
+.header{
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  background: #d7d7d7;
+  align-items: center;
+  height: 160px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+p{
+  font-size: 1.5rem;
+}
+
+a{
+  text-decoration: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+a:hover{
+  color: black;
+}
+
+.title{
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.logo{
+  max-width: 180px;
+  border-radius: 40px;
+  border: 2px solid black;
+}
+
+.logo:hover{
+  transform: scale(1.2);
+}
+
+.logo_redes{
+  max-width: 50px;
+  border-radius: 40px;
+  border: 2px solid black;
+}
+
+.logo_redes:hover{
+  transform: scale(1.2);
+}
+
+.perfil{
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil__foto{
+  max-height: 120px;
+  border-radius: 50px;
+}
+
+.fondo{
+  max-width: 215px;
+  border-radius: 40px;
+  border: 3px solid black;
+}
+
+.fondo:hover{
+  transform: scale(1.2);
+}
+
+.boton{
+  background: rgb(19, 143, 247);
+  border: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+}
+
+.boton:hover{
+  background-color: rgb(20, 115, 192);
+}
+
+.boton:active{
+  transform: scale(1.1);
+}
+
+.aside{
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  background: #d7d7d7;
+  width: 150px;
+  padding: 20px;
+  float: right;
+  border-radius: 10px;
+  border: 1px solid black;
+  gap: 20px;
+}
+
+.portada{
+  max-height: 200px;
+  border-radius: 25px;
+}
+
+.big__portada{
+  max-height: 350px;
+  border-radius: 25px;
+  border: 3px solid black;
+}
+
+.banner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.banner__in{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor{
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid black;/*rgb(14, 116, 199);*/
+  width: 22em;
+  box-shadow: 8px 8px 5px #444;
+  padding: 8px 12px;
+  background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+  border-radius: 30px;
+  margin-top: 3%;
+  align-items: center;
+}
+
+.contenedor__info{
+  display: flex;
+  padding-left: 10px;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.contenedor:hover{
+  transform: scale(1.1);
+}
+
+.cont__form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  border: 3px solid blue;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form__item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form__boton{
+  background: rgb(19, 143, 247);
+  border: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.form__boton:hover{
+  transform: scale(1.2)
+}
+
+.form__boton:active{
+  background: rgb(10, 110, 200);
+}
+
+.form__genero{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
