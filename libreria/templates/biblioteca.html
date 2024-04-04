@@ -25,18 +25,18 @@
             <div class = "contenedor__info">
         Autor: {{ libro.author.first_name }} {{ libro.author.last_name }}
       <div>
-			  Género: {% for genero in generos %}
-		      -{{genero}}
-	      {%endfor%}
-		  </div>
-		  <form action="{% url 'Book' %}" method="get">
+        Género: {% for genero in generos %}
+          -{{genero}}
+        {%endfor%}
+        </div>
+          <form action="{% url 'Book' %}" method="get">
             <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
-	        <button>Ver más</button>
-		  </form>
-		  </div>
-		  </div>
-		  </div>
-		  </li>
+            <button>Ver más</button>
+          </form>
+          </div>
+          </div>
+          </div>
+      </li>
 	    {%endfor%}
 	  {% endfor %}
 	  </div>
@@ -94,5 +94,4 @@
 	  </div>
 	  </div>
 	</ul>
-
   {% include 'layout/app_footer.html' %}
