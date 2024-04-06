@@ -6,10 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'main.css' %}">
+  <script src="{% static 'register.js' %}" defer></script>
   <title>Registro</title>
 </head>
 <body>
-  {{a}}
   <header class="header">
     <img src="{% static 'assets/logo_biblioteca.png'%}" alt="logo_biblioteca" class="logo">
     <a href="{% url 'Home' %}"><button class="boton">Inicio</button></a>
@@ -24,11 +24,11 @@
 	  </div>
 	  <div class="form__item">
 	    <label for="password_try">Contraseña:</label>
-		<input type="password" id="passwowrd_try" name="user_password_try" required />
+		<input type="password" id="password_try" name="user_password_try" minlength="8" required />
 	  </div>
 	  <div class="form__item">
 	    <label for="password_except">Repite la contraseña:</label>
-		<input type="password" id="passwowrd_except" name="user_password_except" required />
+		<input type="password" id="password_except" name="user_password_except" required />
 	  </div>
 	  <div class="form__item">
 	    <label for="email">Email:</label>

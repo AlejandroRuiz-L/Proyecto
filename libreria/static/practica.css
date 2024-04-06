@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.banner-container {
+    display: flex;
+    flex-direction: column;
+    overflow-x: scroll; /* Permitir desplazamiento horizontal */
+    white-space: nowrap; /* Evitar que el contenido se envuelva a la siguiente línea */
+}
+
+.banner {
+    display: inline-block; /* Mostrar los banners en línea */
+    background-color: #007bff; /* Color de fondo del banner */
+    color: #fff; /* Color del texto */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+}
+
+.banner h1 {
+    font-size: 2em; /* Tamaño del título */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+.banner p {
+    font-size: 1.2em; /* Tamaño del texto */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+.banner .btn {
+    background-color: #fff; /* Color de fondo del botón */
+    color: #007bff; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    text-decoration: none; /* Quitar subrayado del enlace */
+    border-radius: 5px; /* Bordes redondeados */
+}

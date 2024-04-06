@@ -36,7 +36,7 @@ def book(request):
   #for libro in p:
     #libro.portada = '%s'%(str(libro.portada)[2:])
     #libro.save()
-  
+
 
   return render(request, 'book.html', {'book':book})
 
@@ -52,7 +52,15 @@ class Validate(View):
     return render(request, 'validate.html', {'validado':validado})
 '''
 def biblioteca(request):
-  size = Book.objects.all().count()
+  books = {}
+  
+  for libro in Book.objects.all():
+    genre = libro.genre.all()
+    books['assets/%s'%(str(libro.portada))] = {libro:genre}
+
+  size = len(books)
+
+  '''
   books1 = {}
   books2 = {}
   books3 = {}
@@ -67,25 +75,27 @@ def biblioteca(request):
       if query:
         if id_book > size:
           break
-        elif len(books1) < 10:
+        elif len(books1) < 11:
           books1['assets/%s'%(str(query.portada))] = {query:genre}
           id_book += 1
     
-        elif len(books2) < 10:
+        elif len(books2) < 11:
           books2['assets/%s'%(str(query.portada))] = {query:genre}
           id_book += 1
         
-        else:
+        elif len(books3) < 11:
           books3['assets/%s'%(str(query.portada))] = {query:genre}
           id_book += 1
     except:
       id_book += 1
+  '''
   
-  return render(request, 'biblioteca.html', {'books1':books1, 'books2':books2,
-    'books3':books3, 'size':size})
+  return render(request, 'biblioteca.html', {'libros':books, 'size':size})
 
 def contacto(request):
-  return render(request, 'contacto.html', {})
+  books = Book.objects.all()
+
+  return render(request, 'contacto.html', {'libros':books})
 
 def recuperar(request):
   return render(request, 'recuperar_contrasena.html', {})
