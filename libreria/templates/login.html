@@ -16,8 +16,17 @@
   </header>
   <main>
     <section>
-    <div class="cont__form">
-      <form action="{% url 'Home' %}" method="get" class="formulario">
+      <div class="cont__form">
+        <h1>Inicio de Sesion</h1>
+        <form action="{% url 'Validar' %}" method="POST" class="formulario">
+          {%csrf_token%}
+          {{formulario}}
+          <button type='submit'>Iniciar sesion</button>
+        </form>
+      </div>
+    </section>
+  </main>
+        <!--
         <div class="form__item">
           <label for="user">Usuario:</label>
           <input type="text" id="user" name="user_name" required/>
@@ -41,4 +50,5 @@
     </div>
     </section>
   </main>
+-->
 {% include 'layout/app_footer.html' %}

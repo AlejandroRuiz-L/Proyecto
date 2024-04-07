@@ -50,6 +50,7 @@ urlpatterns = [
     path('consultar/', consultar, name = 'Consultar'),
     path('nosotros/', nosotros, name = 'Nosotros'),
     path('book/', book, name = "Book"),
-    path('validate/', validate, name="Validar")
+    path('validate/', validate, name="Validar"),
+    path('exito/', exito, name = 'Exito')
 ]
     #path('validate/', Validate.form, name = 'Validar'),

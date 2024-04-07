@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from biblioteca.models import *
+from .form import *
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
 #from django.views.generic.base import View
@@ -17,14 +18,15 @@ def home(request):
   return render(request, 'index.html', {'generos':genres})
 
 def login(request):
+  f = Form_Login()
 
-  return render(request, 'login.html', {})
+  return render(request, 'login.html', {'formulario':f})
 
 def registro(request):
-  
+  f = Form_Register()
   generos = Genre.objects.all()
 
-  return render(request, 'registro.html', {'generos':generos})
+  return render(request, 'registro.html', {'generos':generos, 'formulario':f})
 
 def book(request):
   #p = Book.objects.all()
@@ -41,7 +43,22 @@ def book(request):
   return render(request, 'book.html', {'book':book})
 
 def validate(request):
-  return render(request, 'validate.html', {})
+  form = Form_Register(request.POST)
+  validate = form.is_valid()
+  if request.method == 'POST':
+    if validate:
+      #form.save()
+      firstname = request.POST.get('id_fistname')
+      lastname = request.POST.get('id_lastname')
+      user = request.POST.get('id_username')
+      pswd = request.POST.get('id_pswd')
+      email = request.POST.get('id_email')
+      return render(request, 'validate.html', {'validado':validate, 'nombre':firstname, 'apellido':lastname, 'password':pswd})
+#  elif request.method == 'POST':
+#    form = Form_Register()
+  else: #request.method == 'GET':
+    form = Form_Register()
+    return render(request, 'registro.html', {'formulario':form})
 #validar sin terminar
 '''
 @method_decorator(csrf_protect)
@@ -51,6 +68,9 @@ class Validate(View):
 
     return render(request, 'validate.html', {'validado':validado})
 '''
+def exito(request):
+  return render(request, 'exito.html', {})
+
 def biblioteca(request):
   books = {}
   
