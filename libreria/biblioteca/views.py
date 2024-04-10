@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from biblioteca.models import *
 from .form import *
+from user.models import User
+
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
 #from django.views.generic.base import View
@@ -45,25 +47,29 @@ def validate(request):
   form = Form_Register(request.POST)
   validate = form.is_valid()
   if request.method == 'POST':
-    if request.POST.get('id_form_type') == 'Registro':
+    if request.POST.get('form_type') == 'Registro':
       if validate:
         #form.save()
-        firstname = request.POST.get('id_firstname')
-        lastname = request.POST.get('id_lastname')
-        user = request.POST.get('id_username')
-        pswd = request.POST.get('id_pswd')
-        email = request.POST.get('id_email')
-        doc = request.POST.get('id_doc')
-        likes = form.cleaned_data['id_likes']
+        firstname = request.POST.get('firstname')
+        lastname = request.POST.get('lastname')
+        user = request.POST.get('username')
+        pswd = request.POST.get('pswd')
+        email = request.POST.get('email')
+        doc = request.POST.get('doc')
+        #likes = form.cleaned_data['id_likes']
+        user = User()
         return render(request, 'validate.html',
           {'validado':validate, 'nombre':firstname,
             'apellido':lastname,
             'password':pswd})
+    if request.POST.get('id_form_type') == 'Login':
+      msg = 'Es login'
+      return render(request, 'validate.html', {'msg':msg})
 #  elif request.method == 'POST':
 #    form = Form_Register()
-  else: #request.method == 'GET':
-    form = Form_Register()
-    return render(request, 'registro.html', {'formulario':form})
+    else: #request.method == 'GET':
+      form = Form_Register(request.POST)
+      return render(request, 'registro.html', {'formulario':form, 'validado':validate})
 #validar sin terminar
 '''
 @method_decorator(csrf_protect)
