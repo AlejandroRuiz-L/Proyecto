@@ -18,15 +18,14 @@ def home(request):
   return render(request, 'index.html', {'generos':genres})
 
 def login(request):
-  f = Form_Login()
+  f = Form_Login(initial={'form_type':'Login'})
 
   return render(request, 'login.html', {'formulario':f})
 
 def registro(request):
-  f = Form_Register()
-  generos = Genre.objects.all()
+  f = Form_Register(initial={'form_type':'Registro'})
 
-  return render(request, 'registro.html', {'generos':generos, 'formulario':f})
+  return render(request, 'registro.html', {'formulario':f})
 
 def book(request):
   #p = Book.objects.all()
@@ -46,14 +45,20 @@ def validate(request):
   form = Form_Register(request.POST)
   validate = form.is_valid()
   if request.method == 'POST':
-    if validate:
-      #form.save()
-      firstname = request.POST.get('id_fistname')
-      lastname = request.POST.get('id_lastname')
-      user = request.POST.get('id_username')
-      pswd = request.POST.get('id_pswd')
-      email = request.POST.get('id_email')
-      return render(request, 'validate.html', {'validado':validate, 'nombre':firstname, 'apellido':lastname, 'password':pswd})
+    if request.POST.get('id_form_type') == 'Registro':
+      if validate:
+        #form.save()
+        firstname = request.POST.get('id_firstname')
+        lastname = request.POST.get('id_lastname')
+        user = request.POST.get('id_username')
+        pswd = request.POST.get('id_pswd')
+        email = request.POST.get('id_email')
+        doc = request.POST.get('id_doc')
+        likes = form.cleaned_data['id_likes']
+        return render(request, 'validate.html',
+          {'validado':validate, 'nombre':firstname,
+            'apellido':lastname,
+            'password':pswd})
 #  elif request.method == 'POST':
 #    form = Form_Register()
   else: #request.method == 'GET':

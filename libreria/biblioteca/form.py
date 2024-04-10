@@ -11,6 +11,9 @@ class Form_Login(forms.Form):
     label='Contraseña',
     widget=forms.PasswordInput(attrs={'class':'form__item'})
     )
+  form_type = forms.CharField(
+    widget=forms.HiddenInput
+  )
 
 class Form_Register(forms.Form):
   #class Meta:
@@ -38,6 +41,9 @@ class Form_Register(forms.Form):
     label='Gustos (No obligatorio)',
     required = False,
     widget=forms.CheckboxSelectMultiple
+    )
+  form_type = forms.CharField(
+    widget=forms.HiddenInput
     )
   #likes2 = forms.ModelMultipleChoiceField(
   #  required = False, widget=forms.CheckboxSelectMultiple, choices=genres)
