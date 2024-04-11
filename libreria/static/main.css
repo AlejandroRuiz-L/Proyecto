@@ -33,20 +33,22 @@ font-family: unset;
   padding: 0;
   box-sizing: border-box;
 }
+
 li {
   list-style: none;
 }
-.container{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;/*repeat(auto-fit, minmax(200px, 1fr));*/
-  gap: 10px;
-  padding-left: 30px;
+
+h1{
+  text-align: center;
+  align-items: center;
 }
+
 .item{
   background-color: aqua;
   padding: 20px;
   text-align: center;
 }
+
 .header{
   display: flex;
   justify-content: space-evenly;
@@ -58,7 +60,6 @@ li {
   margin-bottom: 20px;
   border-radius: 10px;
   /*background-image: url("../static/assets/papiro.png");*/
-
 }
 
 p{
@@ -180,6 +181,13 @@ a:hover{
   align-items: center;
 }
 
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;/*repeat(auto-fit, minmax(200px, 1fr));*/
+  gap: 10px;
+  padding-left: 30px;
+}
+
 .contenedor{
   display: flex;
   justify-content: space-around;
@@ -203,6 +211,10 @@ a:hover{
 
 .contenedor:hover{
   transform: scale(1.1);
+}
+
+.cont__boton{
+  font-size: 1rem;
 }
 
 .cont__form{

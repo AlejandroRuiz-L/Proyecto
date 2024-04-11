@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from biblioteca.models import *
 from .form import *
-from user.models import User
+from user.models import User, DocumentType
 
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
@@ -55,13 +55,19 @@ def validate(request):
         user = request.POST.get('username')
         pswd = request.POST.get('pswd')
         email = request.POST.get('email')
-        doc = request.POST.get('doc')
+        d = request.POST.get('doc')
+        doc = DocumentType.objects.get(id=d)
         #likes = form.cleaned_data['id_likes']
-        user = User()
+        """
+        user = User(first_name=firstname, last_name=lastname,
+                    user_name=user, password=pswd, email=email,
+                    document=doc
+                    ).save()
+        """
         return render(request, 'validate.html',
           {'validado':validate, 'nombre':firstname,
             'apellido':lastname,
-            'password':pswd})
+            'password':pswd, 'doc':d})
     if request.POST.get('id_form_type') == 'Login':
       msg = 'Es login'
       return render(request, 'validate.html', {'msg':msg})

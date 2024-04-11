@@ -11,6 +11,9 @@
 
 <body>
   {% include 'layout/app_header.html' %}
+  <h1>Bienvenido a la biblioteca</h1>
+  <br>
+  <p>Estos son los libros disponibles.</p>
   <p>Total de libros en la biblioteca: {{size}}</p>
   <div class="container">
     {% for portada, instacia in libros.items %}
@@ -28,7 +31,7 @@
         </div>
           <form action="{% url 'Book' %}" method="get">
             <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
-            <button>Ver más</button>
+            <button class="boton cont__boton">Ver más</button>
           </form>
           </div>
           </div>

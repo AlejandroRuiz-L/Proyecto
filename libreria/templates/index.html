@@ -18,8 +18,9 @@
   </header>
   <main>
     <section>
+      <h1>Bienvenido a su biblioteca virtual</h1>
 	  <h2>Recomendados</h2>
-	  <ul class="banner__in">
+	  <ul class="banner">
 	    {% for portada, instancias in generos.items %}
         {% for libro, genero in instancias.items %}
 		{% for gen in genero %}
@@ -31,7 +32,7 @@
 			    {{libro.author.first_name}} {{libro.author.last_name}}
 			    <form action="{% url 'Book' %}" method="get">
 				  <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
-				  <button>Ver más</button>
+				  <button class="boton cont__boton">Ver más</button>
 				</form>
 			  </div>
 			</li>
@@ -44,7 +45,7 @@
 	<section>
 	  <br><br>
 	  <h2>Fantasía</h2>
-	  <ul>
+	  <ul class="banner">
 	    {% for portada, instancias in generos.items %}
         {% for libro, genero in instancias.items %}
 		{% for gen in genero %}
@@ -56,7 +57,7 @@
 			    {{libro.author.first_name}} {{libro.author.last_name}}
 			    <form action="{% url 'Book' %}" method="get">
 				  <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
-				  <button>Ver más</button>
+				  <button class="boton cont__boton">Ver más</button>
 				</form>
 			  </div>
 			</li>
