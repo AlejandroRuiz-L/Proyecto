@@ -40,8 +40,9 @@ def book(request):
     #libro.portada = '%s'%(str(libro.portada)[2:])
     #libro.save()
 
-
   return render(request, 'book.html', {'book':book})
+
+
 
 def validate(request):
   form = Form_Register(request.POST)
@@ -50,14 +51,24 @@ def validate(request):
     if request.POST.get('form_type') == 'Registro':
       if validate:
         #form.save()
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        user = request.POST.get('username')
-        pswd = request.POST.get('pswd')
+        firstname = request.POST.get('first_name')
+        lastname = request.POST.get('last_name')
+        user = request.POST.get('user_name')
+        pswd = request.POST.get('password')
         email = request.POST.get('email')
-        d = request.POST.get('doc')
+        d = request.POST.get('document')
         doc = DocumentType.objects.get(id=d)
-        #likes = form.cleaned_data['id_likes']
+        likes = request.POST.get('likes')
+        genre = Genre.objects.get(id=likes)
+        """
+        for i in range(1, Genre.objects.all().count()+1):
+          query = request.POST.get('likes') #('id_likes_%s'%(i))
+          if query:
+            l = Genre.objects.get(id=i)
+            likes.append(l)
+          else:
+            likes.append('vacío')
+        """
         """
         user = User(first_name=firstname, last_name=lastname,
                     user_name=user, password=pswd, email=email,
@@ -67,7 +78,7 @@ def validate(request):
         return render(request, 'validate.html',
           {'validado':validate, 'nombre':firstname,
             'apellido':lastname,
-            'password':pswd, 'doc':d})
+            'password':pswd, 'doc':d, 'likes':likes, 'genre':genre})
     if request.POST.get('id_form_type') == 'Login':
       msg = 'Es login'
       return render(request, 'validate.html', {'msg':msg})

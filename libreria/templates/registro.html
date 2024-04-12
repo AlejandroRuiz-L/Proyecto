@@ -16,10 +16,10 @@
   </header>
   <section>
   <div class="cont__form">
-    <h2>Formulario de registro</h2>
+    <h2>Crea tu cuenta en nuestra libreria</h2>
     <form action="{% url 'Validar' %}" method="POST" class="formulario" >
       {% csrf_token %}
-      {{formulario}}
+      {{formulario.as_p}}
       <button type="submit" class="form__boton">Registrarse<button>
       <button type="reset" class="form__boton">Restablecer<button>
       </form>

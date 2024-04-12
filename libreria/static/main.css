@@ -188,6 +188,15 @@ a:hover{
   padding-left: 30px;
 }
 
+.container2{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container3{
+  flex: 1 0 200px;
+}
+
 .contenedor{
   display: flex;
   justify-content: space-around;
@@ -199,6 +208,7 @@ a:hover{
   border-radius: 30px;
   margin-top: 3%;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .contenedor__info{

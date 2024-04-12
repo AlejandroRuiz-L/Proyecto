@@ -1,6 +1,7 @@
 from django import forms
 from .models import Genre
-from user.models import DocumentType
+from user.models import DocumentType, User
+#from django.contrib.auth.models import User
 
 class Form_Login(forms.Form):
   username = forms.CharField(
@@ -15,8 +16,41 @@ class Form_Login(forms.Form):
     widget=forms.HiddenInput
   )
 
-class Form_Register(forms.Form):
-  #class Meta:
+class Form_Register(forms.ModelForm):
+  #Formulario basado en modelos
+  #password = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
+  form_type = forms.CharField(widget=forms.HiddenInput)
+
+  class Meta:
+    model = User
+    fields = ['first_name','last_name','user_name','password','email','document','likes']
+    '''
+    widgets={
+      'first_name':forms.TextInput(attrs={'class':'form__item'}),
+      'last_name':forms.TextInput(attrs={'class':'form__item'}),
+      'user_name':forms.TextInput(attrs={'class':'form__item'}),
+      'password':forms.PasswordInput(attrs={'class':'form__item'}),
+      'email':forms.EmailInput(attrs={'class':'form__item'}),
+      'document':forms.Select(attrs={'class':'form__item'}),
+      'likes':forms.Select(attrs={'class':'form__item'})
+    }
+    '''
+    labels={
+      'first_name':'Nombres',
+      'last_name':'Apellidos',
+      'user_name':'Nombre de usuario',
+      'password':'Contraseña',
+      'email':'Correo electrónico',
+      'document':'Documento de identidad(No obligatorio)',
+      'likes':'Género favorito(No obligatorio)'
+    }
+
+    def __init__(self, *args, **kwargs):
+      super(Form_Register, self).__init__(*args, **kwargs)
+      self.fields['Genero favorito'].queryset = Genre.objects.all()
+  
+  #formulario basado en funciones
+  """
   firstname = forms.CharField(
     label = 'Nombres',
     widget=forms.TextInput(attrs={'class':'form__item'}))
@@ -36,34 +70,19 @@ class Form_Register(forms.Form):
     widget=forms.Select(attrs={'class':'form__item'}),
     required=False
     )
-  likes = forms.ModelMultipleChoiceField(
-    queryset=Genre.objects.all(),
-    label='Gustos (No obligatorio)',
+  def generos():
+    opciones = []
+    for g in Genre.objects.all():
+      opciones.append((f'{g.id}', f'{g.name}'))
+    return opciones
+  likes = forms.ChoiceField(
+    #queryset=Genre.objects.all(),
+    label='Género favorito (No obligatorio)',
     required = False,
-    widget=forms.CheckboxSelectMultiple
+    widget=forms.RadioSelect,
+    choices=generos()
     )
   form_type = forms.CharField(
     widget=forms.HiddenInput
-    )
-  #likes2 = forms.ModelMultipleChoiceField(
-  #  required = False, widget=forms.CheckboxSelectMultiple, choices=genres)
-
-  #libros = forms.CheckboxSelectMultiple(queryset=Genre.objects.all())
-  '''
-    model = Genre
-    fields = ['titulo', 'generos']
-    likes = {
-      'generos':forms.CheckboxSelectMultiple
-    }
-  '''
-  """
-class SimpleForm(forms.Form):
-    birth_year = forms.DateField(
-        widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES)
-    )
-    favorite_colors = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-        choices=FAVORITE_COLORS_CHOICES,
     )
   """

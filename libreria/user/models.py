@@ -16,7 +16,7 @@ class User(models.Model):
   password = models.CharField(max_length = 50)
   email = models.EmailField()
   document = models.ForeignKey(DocumentType, on_delete=models.CASCADE, null=True)
-  likes = models.ManyToManyField(Genre)
+  likes = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
   def __str__(self):
     return '%s %s'%(self.first_name, self.last_name)

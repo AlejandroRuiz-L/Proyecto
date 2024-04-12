@@ -20,9 +20,12 @@
         <h1>Inicio de Sesion</h1>
         <form action="{% url 'Validar' %}" method="POST" class="formulario">
           {%csrf_token%}
-          {{formulario}}
-          <button type='submit'>Iniciar sesion</button>
+          {{formulario.as_p}}
+          <button type='submit' class="form__boton">Iniciar sesion</button>
         </form>
+        <br>
+        <p>No tienes una cuenta aún?</p>
+        <a href="{% url 'Registro' %}">Crea tu cuenta aqui</a>
       </div>
     </section>
   </main>
