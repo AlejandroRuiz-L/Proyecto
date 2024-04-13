@@ -8,7 +8,7 @@ class Form_Login(forms.Form):
     label='Nombre de usuario',
     widget=forms.TextInput(attrs={'class':'form__item'})
     )
-  pswd = forms.CharField(
+  password = forms.CharField(
     label='Contraseña',
     widget=forms.PasswordInput(attrs={'class':'form__item'})
     )
@@ -18,7 +18,7 @@ class Form_Login(forms.Form):
 
 class Form_Register(forms.ModelForm):
   #Formulario basado en modelos
-  #password = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
+  password = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
   form_type = forms.CharField(widget=forms.HiddenInput)
 
   class Meta:

@@ -47,10 +47,11 @@ def book(request):
 def validate(request):
   form = Form_Register(request.POST)
   validate = form.is_valid()
+  log = True
+  msg = ""
   if request.method == 'POST':
     if request.POST.get('form_type') == 'Registro':
       if validate:
-        #form.save()
         firstname = request.POST.get('first_name')
         lastname = request.POST.get('last_name')
         user = request.POST.get('user_name')
@@ -58,35 +59,38 @@ def validate(request):
         email = request.POST.get('email')
         d = request.POST.get('document')
         doc = DocumentType.objects.get(id=d)
-        likes = request.POST.get('likes')
-        genre = Genre.objects.get(id=likes)
-        """
-        for i in range(1, Genre.objects.all().count()+1):
-          query = request.POST.get('likes') #('id_likes_%s'%(i))
-          if query:
-            l = Genre.objects.get(id=i)
-            likes.append(l)
-          else:
-            likes.append('vacío')
-        """
-        """
-        user = User(first_name=firstname, last_name=lastname,
-                    user_name=user, password=pswd, email=email,
-                    document=doc
-                    ).save()
-        """
-        return render(request, 'validate.html',
-          {'validado':validate, 'nombre':firstname,
-            'apellido':lastname,
-            'password':pswd, 'doc':d, 'likes':likes, 'genre':genre})
+        like = request.POST.get('likes')
+        genre = Genre.objects.get(id=like)
+        emails = []
+        user_names = []
+        for i in User.objects.all():
+          emails.append(i.email)
+          user_names.append(i.user_name)
+        if email in emails or user in user_names:
+          log = False
+          msg = "El usuario o el email ya se encuentra registrado."
+        else:
+          User(first_name=firstname, last_name=lastname,
+                      user_name=user, password=pswd, email=email,
+                      document=doc, likes=genre
+                      ).save()
+          return render(request, 'validate.html', {'registrado':log})
     if request.POST.get('id_form_type') == 'Login':
-      msg = 'Es login'
-      return render(request, 'validate.html', {'msg':msg})
+      username = request.POST.get('username')
+      password = request.POST.get('password')
+      for i in User.objects.all():
+        if username == i.user_name and password == i.password:
+          log = True
+      if log:
+        return render(request, 'validate.html', {'logueado':log})
+      else:
+        msg="Usuario o contraseña incorrectos. Intentelo nuevamente"
+        return render(request, 'login.html', {'msg':msg})
 #  elif request.method == 'POST':
 #    form = Form_Register()
     else: #request.method == 'GET':
       form = Form_Register(request.POST)
-      return render(request, 'registro.html', {'formulario':form, 'validado':validate})
+      return render(request, 'registro.html', {'formulario':form, 'validado':validate, 'msg':msg})
 #validar sin terminar
 '''
 @method_decorator(csrf_protect)
