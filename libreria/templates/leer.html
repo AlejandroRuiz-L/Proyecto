@@ -8,6 +8,15 @@
   <link rel="stylesheet" href="{% static 'main.css' %}">
   <title>Header</title>
 </head>
+<body>
+  <header class="header">
+    <img src="{% static 'assets/logo_libreria.png' %}" alt="Logo libreria" class="logo">
+    <a href="{% url 'Home' %}"><button class="boton">Inicio</button></a>
+    <a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
+    <button id="btnBack" class="boton">&#8656;</button>
+  </header>
 {% for contenido, libro in libro.items%}
   <embed class="read__pdf" src="../static/books{{contenido}}" type="application/pdf" />
 {%endfor%}
+</body>
+</html>
