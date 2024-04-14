@@ -1,19 +1,4 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'main.css' %}">
-  <script src="{% static 'register.js' %}" defer></script>
-  <title>Registro</title>
-</head>
-<body>
-  <header class="header">
-    <img src="{% static 'assets/logo_biblioteca.png'%}" alt="logo_biblioteca" class="logo">
-    <a href="{% url 'Home' %}"><button class="boton">Inicio</button></a>
-  </header>
+{% include 'layout/app_log.html' %}
   <section>
   <div class="cont__form">
     <h2>Crea tu cuenta en nuestra libreria</h2>

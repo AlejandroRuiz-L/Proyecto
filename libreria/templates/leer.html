@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <title>Header</title>
+</head>
+{% for contenido, libro in libro.items%}
+  <embed class="read__pdf" src="../static/books{{contenido}}" type="application/pdf" />
+{%endfor%}

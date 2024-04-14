@@ -1,33 +1,26 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from biblioteca.models import *
-from .form import *
+from user.views import logued
 from user.models import User, DocumentType
-
+from django.contrib.auth.decorators import login_required
+from .form import Form_Login
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
 #from django.views.generic.base import View
-#from static.img import libros as lb, img
-
-# Create your views here.
-from django.shortcuts import render
+f = Form_Login(initial={'form_type':'login'})
 
 def home(request):
+  #if logued:
   books = Book.objects.all()
   genres = {}
   for book in books:
     genres['assets/%s'%(str(book.portada))] = {book:book.genre.all()}
 
   return render(request, 'index.html', {'generos':genres})
+  # else:
+  #   msg="no funciona"
+  #   return render(request, 'login.html', {'formulario':f, 'msg':msg})
 
-def login(request):
-  f = Form_Login(initial={'form_type':'Login'})
-
-  return render(request, 'login.html', {'formulario':f})
-
-def registro(request):
-  f = Form_Register(initial={'form_type':'Registro'})
-
-  return render(request, 'registro.html', {'formulario':f})
 
 def book(request):
   #p = Book.objects.all()
@@ -36,121 +29,37 @@ def book(request):
   g = b.genre.all()
   book = {'assets/%s'%(str(b.portada)):{b:g}}
 
-  #for libro in p:
-    #libro.portada = '%s'%(str(libro.portada)[2:])
-    #libro.save()
-
   return render(request, 'book.html', {'book':book})
 
+def read(request):
+  ins = request.GET.get('instancia')
+  b = Book.objects.get(id=ins)
+  book = {'%s'%(str(b.pdf)[4:]):b}
+  return render(request, 'leer.html', {'libro':book})
 
-
-def validate(request):
-  form = Form_Register(request.POST)
-  validate = form.is_valid()
-  log = True
-  msg = ""
-  if request.method == 'POST':
-    if request.POST.get('form_type') == 'Registro':
-      if validate:
-        firstname = request.POST.get('first_name')
-        lastname = request.POST.get('last_name')
-        user = request.POST.get('user_name')
-        pswd = request.POST.get('password')
-        email = request.POST.get('email')
-        d = request.POST.get('document')
-        doc = DocumentType.objects.get(id=d)
-        like = request.POST.get('likes')
-        genre = Genre.objects.get(id=like)
-        emails = []
-        user_names = []
-        for i in User.objects.all():
-          emails.append(i.email)
-          user_names.append(i.user_name)
-        if email in emails or user in user_names:
-          log = False
-          msg = "El usuario o el email ya se encuentra registrado."
-        else:
-          User(first_name=firstname, last_name=lastname,
-                      user_name=user, password=pswd, email=email,
-                      document=doc, likes=genre
-                      ).save()
-          return render(request, 'validate.html', {'registrado':log})
-    if request.POST.get('id_form_type') == 'Login':
-      username = request.POST.get('username')
-      password = request.POST.get('password')
-      for i in User.objects.all():
-        if username == i.user_name and password == i.password:
-          log = True
-      if log:
-        return render(request, 'validate.html', {'logueado':log})
-      else:
-        msg="Usuario o contraseña incorrectos. Intentelo nuevamente"
-        return render(request, 'login.html', {'msg':msg})
-#  elif request.method == 'POST':
-#    form = Form_Register()
-    else: #request.method == 'GET':
-      form = Form_Register(request.POST)
-      return render(request, 'registro.html', {'formulario':form, 'validado':validate, 'msg':msg})
-#validar sin terminar
-'''
-@method_decorator(csrf_protect)
-class Validate(View):
-  def form(self, request):
-    validado = False
-
-    return render(request, 'validate.html', {'validado':validado})
-'''
-def exito(request):
-  return render(request, 'exito.html', {})
 
 def biblioteca(request):
+#  if logued:
   books = {}
-  
   for libro in Book.objects.all():
     genre = libro.genre.all()
     books['assets/%s'%(str(libro.portada))] = {libro:genre}
-
   size = len(books)
 
-  '''
-  books1 = {}
-  books2 = {}
-  books3 = {}
-  id_book = 1
-  #limit = int(size / 3)
-  #for i in gens:
-  #  gen.append(i)
-  while True:
-    try:
-      query = Book.objects.get(id=id_book)
-      genre = query.genre.all()
-      if query:
-        if id_book > size:
-          break
-        elif len(books1) < 11:
-          books1['assets/%s'%(str(query.portada))] = {query:genre}
-          id_book += 1
-    
-        elif len(books2) < 11:
-          books2['assets/%s'%(str(query.portada))] = {query:genre}
-          id_book += 1
-        
-        elif len(books3) < 11:
-          books3['assets/%s'%(str(query.portada))] = {query:genre}
-          id_book += 1
-    except:
-      id_book += 1
-  '''
-  
   return render(request, 'biblioteca.html', {'libros':books, 'size':size})
+  # else:
+  #   return render(request, 'login.html', {'formulario':f})
+
 
 def contacto(request):
   books = Book.objects.all()
 
   return render(request, 'contacto.html', {'libros':books})
 
+
 def recuperar(request):
   return render(request, 'recuperar_contrasena.html', {})
+
 
 def consultar(request):
   libros = {}
@@ -162,6 +71,7 @@ def consultar(request):
   libros['assets/%s'%(str(libro2.portada))] = {libro2:genre2}
 
   return render(request, 'consulta.html', {'libros':libros})
+
 
 def buscar(request):
 
@@ -176,6 +86,3 @@ def buscar(request):
   cnt = len(search)
 
   return render(request, 'buscar.html', {'cnt':cnt, 'search':search})
-  
-def nosotros(request):
-  return render(request, 'nosotros.html', {})

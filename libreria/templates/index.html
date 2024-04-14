@@ -1,4 +1,4 @@
-{% load static %}
+<!--{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,14 +8,9 @@
   <link rel="stylesheet" href="{% static 'main.css' %}">
   <title>Biblioteca Virtual</title>
 </head>
-
+-->
+{% include 'layout/app_header.html' %}
 <body>
-  <header class="header">
-    <img src="{% static 'assets/logo_biblioteca.png' %}" class="logo" alt="Logo Biblioteca">
-	<a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
-	<a href="{% url 'Login' %}"><button class="boton">Iniciar sesion</button></a>
-    <a href="{% url 'Registro' %}"><button class="boton">Registrarse</button></a>
-  </header>
   <main>
     <section>
       <h1>Bienvenido a su biblioteca virtual</h1>

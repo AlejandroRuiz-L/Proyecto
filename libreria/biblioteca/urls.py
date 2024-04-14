@@ -36,21 +36,17 @@ urlpatterns = [
 '''
 
 #urls Django 5.0.2
-from django.contrib import admin
 from django.urls import path
 from .views import *
+
 urlpatterns = [
-    path('', home, name = 'Home'),
-    path('login/', login, name = 'Login'),
+    path('home', home, name = 'Home'),
     path('biblioteca/', biblioteca, name = 'Biblioteca'),
     path('contacto/', contacto, name = 'Contacto'),
     path('recuperar/', recuperar, name = 'Recuperar'),
-    path('registro/', registro, name = 'Registro'),
     path('buscar/', buscar, name = 'Buscar'),
     path('consultar/', consultar, name = 'Consultar'),
-    path('nosotros/', nosotros, name = 'Nosotros'),
     path('book/', book, name = "Book"),
-    path('validate/', validate, name="Validar"),
-    path('exito/', exito, name = 'Exito')
+    path('leer/', read, name = 'Read')
 ]
     #path('validate/', Validate.form, name = 'Validar'),

@@ -22,7 +22,9 @@ class Book(models.Model):
   summary = models.TextField(max_length=1000, help_text='Ingrese una breve descripcion del libro')
   isbn = models.CharField('ISBN', max_length=30)
   genre = models.ManyToManyField(Genre, help_text="Seleccione un genero para el libro")
-  portada = models.ImageField(null=True)
+  portada = models.ImageField(default=None, blank=True)
+  content = models.BinaryField(blank=True)
+  pdf = models.FileField(upload_to='pdfs/', blank=True)
 
   def __str__(self):
     """String que representa al objeto Book"""

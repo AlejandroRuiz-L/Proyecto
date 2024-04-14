@@ -18,6 +18,10 @@
             <div class="contenedor__info">
             <h4>Descripción:</h4>
             <p>{{libro.summary}}</p>
+            <form method="GET" action="{% url 'Read' %}">
+              <input type="hidden" name="instancia" value="{{libro.id}}" />
+              <button class="boton cont__boton">Leer libro</button>
+            </form>
             </div>
             </div>
           </div>

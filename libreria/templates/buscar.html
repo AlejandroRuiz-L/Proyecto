@@ -3,7 +3,7 @@
 
   <section>
   <p>Se encontaron '{{ cnt }}' libros.</p>
-    <ul>
+    <ul class="container2">
     {% for portada, instancias in search.items %}
     {% for generos, libro in instancias.items %}
     <li>
@@ -20,7 +20,7 @@
       </div>
       <form action="{% url 'Book' %}" method="get">
         <input type="hidden" id="{{libro.id}}" name="instancia" value="{{libro.id}}" />
-        <button>Ver más</button>
+        <button class="boton cont__boton">Ver más</button>
       </form>
       {%endfor%}
       {%endfor%}

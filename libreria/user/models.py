@@ -17,6 +17,7 @@ class User(models.Model):
   email = models.EmailField()
   document = models.ForeignKey(DocumentType, on_delete=models.CASCADE, null=True)
   likes = models.ForeignKey(Genre, on_delete=models.CASCADE, null=True)
+  favorite_books = models.ManyToManyField(Book)
 
   def __str__(self):
     return '%s %s'%(self.first_name, self.last_name)
