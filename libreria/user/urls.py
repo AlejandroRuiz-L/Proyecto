@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import *
+from .views import Validates
 
 urlpatterns = [
-    path('', login, name = 'Login'),
-    path('registro/', registro, name = 'Registro'),
-    path('validate/', validate, name="Validar")
+    path('', Validates.login, name = 'Login'),
+    path('registro/', Validates.registro, name = 'Registro'),
+    path('validate/', Validates.validate, name="Validar")
 ]

@@ -1,6 +1,8 @@
 from django import forms
 from .models import Genre
 from user.models import DocumentType, User
+from biblioteca.models import Genre
+from django.core.validators import RegexValidator
 #from django.contrib.auth.models import User
 
 class Form_Login(forms.Form):
@@ -19,6 +21,23 @@ class Form_Login(forms.Form):
 class Form_Register(forms.ModelForm):
   #Formulario basado en modelos
   password = forms.CharField(label='Contraseña',widget=forms.PasswordInput)
+  email = forms.EmailField(validators=[
+    RegexValidator(
+      regex=r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+      message='El correo no es válido.',
+      code='invalid_email'
+    )
+  ])
+  document = forms.ModelChoiceField(
+    queryset=DocumentType.objects.all(),
+    required=False,
+    widget=forms.Select,
+    label='Documento(No obligatorio)')
+  likes = forms.ModelChoiceField(
+    queryset=Genre.objects.all(),
+    required=False,
+    widget=forms.Select,
+    label='Género favorito(No obligatorio)')
   form_type = forms.CharField(widget=forms.HiddenInput)
 
   class Meta:
@@ -41,8 +60,8 @@ class Form_Register(forms.ModelForm):
       'user_name':'Nombre de usuario',
       'password':'Contraseña',
       'email':'Correo electrónico',
-      'document':'Documento de identidad(No obligatorio)',
-      'likes':'Género favorito(No obligatorio)'
+      #'document':'Documento de identidad(No obligatorio)',
+      #'likes':'Género favorito(No obligatorio)'
     }
 
     def __init__(self, *args, **kwargs):

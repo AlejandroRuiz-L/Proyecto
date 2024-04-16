@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from biblioteca.models import *
-from user.views import logued
+from user.views import Validates
 from user.models import User, DocumentType
 from django.contrib.auth.decorators import login_required
 from .form import Form_Login
@@ -11,16 +11,13 @@ f = Form_Login(initial={'form_type':'login'})
 
 def home(request):
   #if logued:
+  user = Validates.user_log
   books = Book.objects.all()
   genres = {}
   for book in books:
     genres['assets/%s'%(str(book.portada))] = {book:book.genre.all()}
 
-  return render(request, 'index.html', {'generos':genres})
-  # else:
-  #   msg="no funciona"
-  #   return render(request, 'login.html', {'formulario':f, 'msg':msg})
-
+  return render(request, 'index.html', {'generos':genres, 'user':user})
 
 def book(request):
   #p = Book.objects.all()

@@ -1,7 +1,8 @@
-const user = document.getElementById("user");
-const pwrd1 = document.getElementById("password_try");
-const pwrd2 = document.getElementById("password_except");
-const email = document.getElementById("email");
+const firstName = document.getElementById("id_first_name");
+const lastName = document.getElementById("id_last_name");
+const user = document.getElementById("id_user_name");
+const pwrd = document.getElementById("id_password");
+const email = document.getElementById("id_email");
 
 const evento_vacio = function (element) {
   element.addEventListener('blur', () => {
@@ -15,7 +16,7 @@ const evento_vacio = function (element) {
 
 const minimo = function (element) {
   element.addEventListener('blur', () => {
-    if (!elemento.value.length >= 8) {
+    if (!element.value.length >= 8) {
       element.style.borderColor = 'salmon';
     } else {
       element.style.borderColor = 'blue';
@@ -23,23 +24,24 @@ const minimo = function (element) {
   })
 }
 
-const validar_email = function (elemento) {
-  elemento.addEventListener('blur', () => {
+const validar_email = function (element) {
+  element.addEventListener('blur', () => {
     const patt_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!patt_email.test(elemento.value)) {
-      console.log(`Campo '${elemento.name}' invalido.`);
-      elemento.style.borderColor = "salmon";
+    if (!patt_email.test(element.value)) {
+      console.log(`Campo '${element.name}' invalido.`);
+      element.style.borderColor = "salmon";
     } else {
-      console.log(`Campo '${elemento.name}' valido.`);
-      elemento.style.borderColor = 'skyblue';
+      console.log(`Campo '${element.name}' valido.`);
+      element.style.borderColor = 'skyblue';
     }
   })
 }
 
 
+evento_vacio(firstName);
+evento_vacio(lastName);
 evento_vacio(user);
-evento_vacio(pwrd1);
-evento_vacio(pwrd2);
-evento_vacio(email);
-minimo(pwrd1);
+evento_vacio(pwrd);
+evento_vacio(email)
+minimo(pwrd);
 validar_email(email);
