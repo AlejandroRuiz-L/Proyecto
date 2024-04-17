@@ -38,6 +38,10 @@ li {
   list-style: none;
 }
 
+.entrada{
+  max-width: 110px;
+}
+
 h1{
   text-align: center;
   align-items: center;
@@ -118,7 +122,7 @@ a:hover{
 }
 
 .fondo{
-  max-width: 215px;
+  max-width: 240px;
   border-radius: 40px;
   border: 3px solid black;
 }

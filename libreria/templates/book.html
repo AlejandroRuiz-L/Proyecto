@@ -22,6 +22,10 @@
               <input type="hidden" name="instancia" value="{{libro.id}}" />
               <button class="boton cont__boton">Leer libro</button>
             </form>
+            <form method="GET" action="{%url 'Favorite_book'%}">
+              <input type="hidden" name="favorite" value="{{libro.id}}" />
+              <button class="boton cont__boton">Agregar a favoritos &plus;</button>
+            </form>
             </div>
             </div>
           </div>

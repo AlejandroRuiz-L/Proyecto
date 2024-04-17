@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="es">
 
 <head>
@@ -31,7 +31,7 @@
 	  <form action="{% url 'Buscar' %}" method='get' >
 	    <div>
 	    <label for='buscar'>Buscas un libro en particular?</label>
-	    <input type="text" id="buscar" name="buscar_libro" placeholder="Nombre del libro" />
+	    <input type="text" id="buscar" name="buscar_libro" placeholder="Titulo del libro" class="entrada" />
 	    <button class="form__boton btn" class="fas fa-search">Buscar</button>
 		</div>
 	  </form>

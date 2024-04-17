@@ -42,11 +42,12 @@ from .views import *
 urlpatterns = [
     path('home', home, name = 'Home'),
     path('biblioteca/', biblioteca, name = 'Biblioteca'),
-    path('contacto/', contacto, name = 'Contacto'),
+    path('nosotros/', nosotros, name = 'Nosotros'),
     path('recuperar/', recuperar, name = 'Recuperar'),
     path('buscar/', buscar, name = 'Buscar'),
     path('consultar/', consultar, name = 'Consultar'),
     path('book/', book, name = "Book"),
-    path('leer/', read, name = 'Read')
+    path('leer/', read, name = 'Read'),
+    path('favorite/', favoriteBook, name="Favorite_book")
 ]
     #path('validate/', Validate.form, name = 'Validar'),
