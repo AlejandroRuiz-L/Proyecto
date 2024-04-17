@@ -1,15 +1,20 @@
 from django.shortcuts import render, HttpResponse, redirect
 from biblioteca.models import *
-#from user.views import Validates
-from user.models import User, DocumentType
+from user.views import User#Validates
+#from user.models import User, DocumentType
 from django.contrib.auth.decorators import login_required
-from .form import Form_Login
+#from .form import Form_Login
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
 #from django.views.generic.base import View
-f = Form_Login(initial={'form_type':'login'})
+
 
 def home(request):
+  user = request.GET.get('user')
+  try:
+    user_log = User.objects.get(user_name=user)
+  except:
+    user_log = user
   #if logued:
   #user = Validates.user_log
   books = Book.objects.all()
@@ -17,7 +22,7 @@ def home(request):
   for book in books:
     genres['assets/%s'%(str(book.portada))] = {book:book.genre.all()}
 
-  return render(request, 'index.html', {'generos':genres})
+  return render(request, 'index.html', {'generos':genres, 'user':user_log})
 
   """
 def homeLog(request, log):

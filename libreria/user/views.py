@@ -79,7 +79,7 @@ def validate(request):
       if log:
         user_log = User.objects.get(user_name=username)
         #return homeLog(request, user_log)
-        return render(request, 'validate.html', {'logueado':log})
+        return render(request, 'validate.html', {'logueado':log, 'user':user_log})
       else:
         msg="Usuario o contraseña incorrectos"
         return render(request, 'login.html', {'msg':msg, 'formulario':form})

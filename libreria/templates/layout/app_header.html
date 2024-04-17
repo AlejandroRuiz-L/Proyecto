@@ -20,7 +20,7 @@
   <aside class="aside">
     <div class="perfil">
       <img src="{% static 'assets/face_1.jpg' %}" alt="Foto de perfil" class="perfil__foto">
-      <p>Brayan Alejandro Ruiz Lenis</p>
+      <p>{{user.user_name}}</p><br>
       <button id="btnMenu" onclick="toggleMenu()">&#9776;</button>
       <ul id="menu" class="hidden">
         <li><a href="">Editar perfil</a></li>
