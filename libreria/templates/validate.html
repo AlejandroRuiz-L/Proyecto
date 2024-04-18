@@ -5,12 +5,12 @@
     <a href="{% url 'Login' %}">Iniciar sesion</a>
   {% elif logueado %}
     <p>Ha iniciado sesion correctamente.</p>
-    {{user.user_name}}
     <p>Puede continuar a la página de inicio.</p>
     <br>
-    <form method="GET" action="{%url 'Home'%}">
-      <input type="hidden" name="user" value="{{user.user_name}}" />
-      <a href="{%url 'Home'%}"><input type="submit" class="boton cont__boton" /></a>
+    <form method="POST" action="{%url 'Home'%}">
+      {%csrf_token%}
+      <input type="hidden" name="user" value="{{user}}" />
+      <button type="submit" class="boton cont__boton" />Ir a inicio</button>
     </form>
   {%endif%}
 {% include 'layout/app_footer.html' %}

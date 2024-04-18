@@ -13,14 +13,19 @@
 <body>
   <header class="header">
     <img src="{% static 'assets/logo_libreria.png' %}" alt="Logo libreria" class="logo">
-    <a href="{% url 'Home' %}"><button class="boton">Inicio</button></a>
+    <form method="POST" action="{%url 'Home'%}">
+      {%csrf_token%}
+      <input type="hidden" name="user" value="user.user_name" />
+      <button type="submit" class="boton">Inicio</button>
+    </form>
     <a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
     <button id="btnBack" class="boton">&#8656;</button>
   </header>
   <aside class="aside">
     <div class="perfil">
+      <!--
       <img src="{% static 'assets/face_1.jpg' %}" alt="Foto de perfil" class="perfil__foto">
-      <p>{{user.user_name}}</p><br>
+      <p>{{user}}</p><br>-->
       <button id="btnMenu" onclick="toggleMenu()">&#9776;</button>
       <ul id="menu" class="hidden">
         <li><a href="">Editar perfil</a></li>
@@ -28,11 +33,9 @@
         <li><a href="{% url 'Login' %}">Cerrar sesion</a></li>
       </ul>
     </div>
-	  <form action="{% url 'Buscar' %}" method='get' >
-	    <div>
-	    <label for='buscar'>Buscas un libro en particular?</label>
-	    <input type="text" id="buscar" name="buscar_libro" placeholder="Titulo del libro" class="entrada" />
+	  <form action="{% url 'Buscar' %}" method='get' class="banner__in">
+	    <label for='buscar'>Buscas un libro en particular?</label><br>
+	    <input type="text" id="buscar" name="buscar_libro" placeholder="Titulo del libro" class="entrada" /><br>
 	    <button class="form__boton btn" class="fas fa-search">Buscar</button>
-		</div>
 	  </form>
   </aside>

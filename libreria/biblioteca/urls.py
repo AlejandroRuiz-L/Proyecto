@@ -40,7 +40,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('home', home, name = 'Home'),
+    path('home/', home, name = 'Home'),
     path('biblioteca/', biblioteca, name = 'Biblioteca'),
     path('nosotros/', nosotros, name = 'Nosotros'),
     path('recuperar/', recuperar, name = 'Recuperar'),

@@ -12,16 +12,16 @@
 {% include 'layout/app_header.html' %}
 <body>
   <main>
+    <h1>Bienvenido a su biblioteca virtual</h1>
     <section>
-      <h1>Bienvenido a su biblioteca virtual</h1>
 	  <h2>Recomendados</h2>
 	  <ul class="container2">
 	    {% for portada, instancias in generos.items %}
         {% for libro, genero in instancias.items %}
-		{% for gen in genero %}
-		  {% if 'Acción' == gen.name %}
+		      {% for gen in genero %}
+		        {% if 'Acción' == gen.name %}
             <li class = "contenedor">
-			  <img src="static/{{portada}}" class="portada">
+			  <img src="../static/{{portada}}" class="portada">
 			  <div class="contenedor__info">
 			    <p class="title">{{libro.title}}</p>
 			    <div>{{libro.author.first_name}} {{libro.author.last_name}}</div><br>
@@ -46,7 +46,7 @@
 		{% for gen in genero %}
 		  {% if 'Fantasía' == gen.name %}
             <li class = "contenedor">
-			  <img src="static/{{portada}}" class="portada">
+			  <img src="../static/{{portada}}" class="portada">
 			  <div class="contenedor__info">
 			    <p class="title">{{libro.title}}</p>
 			    {{libro.author.first_name}} {{libro.author.last_name}}

@@ -3,26 +3,30 @@ from biblioteca.models import *
 from user.views import User#Validates
 #from user.models import User, DocumentType
 from django.contrib.auth.decorators import login_required
-#from .form import Form_Login
+from .form import Form_Login
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
 #from django.views.generic.base import View
 
 
 def home(request):
+  f = Form_Login(request.POST, initial={'form_type':'Login'})
   user = request.GET.get('user')
-  try:
-    user_log = User.objects.get(user_name=user)
-  except:
-    user_log = user
+  if user != "":
+    try:
+      user_log = User.objects.get(user_name=user)
+    except:
+      user_log = '...'#user
   #if logued:
   #user = Validates.user_log
-  books = Book.objects.all()
-  genres = {}
-  for book in books:
-    genres['assets/%s'%(str(book.portada))] = {book:book.genre.all()}
+    books = Book.objects.all()
+    genres = {}
+    for book in books:
+      genres['assets/%s'%(str(book.portada))] = {book:book.genre.all()}
 
-  return render(request, 'index.html', {'generos':genres, 'user':user_log})
+    return render(request, 'index.html', {'generos':genres, 'user':user_log})
+  else:
+    return render(request, 'login.html', {'formulario':f})
 
   """
 def homeLog(request, log):
@@ -55,15 +59,18 @@ def notFound(request):
 
 def biblioteca(request):
 #  if logued:
-  books = {}
-  for libro in Book.objects.all():
-    genre = libro.genre.all()
-    books['assets/%s'%(str(libro.portada))] = {libro:genre}
-  size = len(books)
+  f = Form_Login(request.POST)
+  user = request.POST.get('user')
+  if user != "":
+    books = {}
+    for libro in Book.objects.all():
+      genre = libro.genre.all()
+      books['assets/%s'%(str(libro.portada))] = {libro:genre}
+    size = len(books)
 
-  return render(request, 'biblioteca.html', {'libros':books, 'size':size})
-  # else:
-  #   return render(request, 'login.html', {'formulario':f})
+    return render(request, 'biblioteca.html', {'libros':books, 'size':size})
+  else:
+    return render(request, 'login.html', {'formulario':f})
 
 
 def nosotros(request):
@@ -89,7 +96,6 @@ def consultar(request):
 
 
 def buscar(request):
-
   name = request.GET.get('buscar_libro')
   books = Book.objects.all()
   search = {}
@@ -103,4 +109,7 @@ def buscar(request):
   return render(request, 'buscar.html', {'cnt':cnt, 'search':search})
 
 def favoriteBook(request):
-  return render(request, 'favorite_book.html', {})
+  id_book = request.GET.get('favorite')
+  book = Book.objects.get(id=id_book)
+
+  return render(request, 'favorite_book.html', {'libro':book})

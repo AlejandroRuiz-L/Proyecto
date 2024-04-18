@@ -20,4 +20,4 @@ class User(models.Model):
   favorite_books = models.ManyToManyField(Book)
 
   def __str__(self):
-    return '%s %s'%(self.first_name, self.last_name)
+    return self.user_name
