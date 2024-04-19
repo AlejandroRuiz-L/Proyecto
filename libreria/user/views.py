@@ -83,3 +83,6 @@ def validate(request):
       else:
         msg="Usuario o contraseña incorrectos"
         return render(request, 'login.html', {'msg':msg, 'formulario':form})
+
+def recuperar(request):
+  user = request

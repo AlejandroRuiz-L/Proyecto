@@ -9,7 +9,7 @@ const evento_vacio = function (element) {
     if (element.value == "") {
       element.style.borderColor = "salmon";
     } else {
-      element.style.borderColor = 'black';
+      element.style.borderColor = 'skyblue';
     }
   })
 }
