@@ -209,6 +209,10 @@ a:hover{
   height: 950px;
 }
 
+.background{
+  background-image: url("../static/assets/papiro.png");
+}
+
 .banner{
   display: flex;
   flex-direction: row;

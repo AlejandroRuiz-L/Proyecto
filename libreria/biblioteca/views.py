@@ -51,7 +51,8 @@ def read(request):
   ins = request.GET.get('instancia')
   b = Book.objects.get(id=ins)
   book = {'%s'%(str(b.pdf)[4:]):b}
-  return render(request, 'leer.html', {'libro':book})
+
+  return render(request, 'leer.html', {'libro':book, 'pdf':b.pdf})
 
 def notFound(request):
   return render(request, 'notFound.html', {})

@@ -16,9 +16,18 @@
     <a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
     <button id="btnBack" class="boton">&#8656;</button>
   </header>
-{% for contenido, libro in libro.items%}
-  <embed class="read__pdf" src="../static/books{{contenido}}" type="application/pdf" />
-{%endfor%}
-{%include 'layout/app_footer.html'%}
+    {%if pdf%}
+    {% for contenido, libro in libro.items%}
+      <embed class="read__pdf" src="../static/books{{contenido}}" type="application/pdf" />
+    {%endfor%}
+    {%else%}
+      <div class="banner__in">
+        <p>Lo sentimos.</p><br>
+        <p>Aún no contamos con ese libro en la biblioteca.</p>
+      </div>
+    {%endif%}
+
+  {%include 'layout/app_footer.html'%}
+
 </body>
 </html>

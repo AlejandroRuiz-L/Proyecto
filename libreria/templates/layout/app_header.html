@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="{% static 'main.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-c3DzVHuSzO+5AUVs9ogcZ+G2EnX3+wJz9qg74I5P+o0szlRidauyHg3eIF1vabVKWFnpoFz0XdCkpsV0+3kMRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="{% static 'buttons.js' %}" defer></script>
-  <title>Header</title>
+  <title>Biblioteca Virtual</title>
 </head>
 <body>
   <header class="header">
@@ -33,9 +33,11 @@
         <li><a href="{% url 'Login' %}">Cerrar sesion</a></li>
       </ul>
     </div>
-	  <form action="{% url 'Buscar' %}" method='get' class="banner__in">
-	    <label for='buscar'>Buscas un libro en particular?</label><br>
-	    <input type="text" id="buscar" name="buscar_libro" placeholder="Titulo del libro" class="entrada" /><br>
-	    <button class="form__boton btn" class="fas fa-search">Buscar</button>
-	  </form>
+    <br>
+    <form action="{% url 'Buscar' %}" method='get' class="banner__in">
+      <p>Buscas un libro en particular?</p><br>
+      <label for="buscar">Título del libro:</label>
+      <input type="text" id="buscar" name="buscar_libro" class="entrada" /><br>
+      <button class="form__boton btn" class="fas fa-search">Buscar</button>
+    </form>
   </aside>
