@@ -19,7 +19,7 @@ const minimo = function (element) {
     if (!element.value.length >= 8) {
       element.style.borderColor = 'salmon';
     } else {
-      element.style.borderColor = 'blue';
+      element.style.borderColor = 'skyblue';
     }
   })
 }
@@ -28,10 +28,10 @@ const validar_email = function (element) {
   element.addEventListener('blur', () => {
     const patt_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!patt_email.test(element.value)) {
-      console.log(`Campo '${element.name}' invalido.`);
+      //console.log(`Campo '${element.name}' invalido.`);
       element.style.borderColor = "salmon";
     } else {
-      console.log(`Campo '${element.name}' valido.`);
+      //console.log(`Campo '${element.name}' valido.`);
       element.style.borderColor = 'skyblue';
     }
   })

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -19,7 +19,7 @@
       <button type="submit" class="boton">Inicio</button>
     </form>
     <a href="{% url 'Biblioteca' %}"><button class="boton">Biblioteca</button></a>
-    <button id="btnBack" class="boton">&#8656;</button>
+    <button id="btnBack" class="boton" title="Regresar">&#8656;</button>
   </header>
   <aside class="aside">
     <div class="perfil">
@@ -28,7 +28,7 @@
       <p>{{user}}</p><br>-->
       <button id="btnMenu" onclick="toggleMenu()">&#9776;</button>
       <ul id="menu" class="hidden">
-        <li><a href="">Editar perfil</a></li>
+        <li><a href="{%url 'LoginUpdate'%}">Editar perfil</a></li>
         <li><a href="">Libros Favoritos</a></li>
         <li><a href="{% url 'Login' %}">Cerrar sesion</a></li>
       </ul>

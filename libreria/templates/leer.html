@@ -18,7 +18,8 @@
   </header>
     {%if pdf%}
     {% for contenido, libro in libro.items%}
-      <embed class="read__pdf" src="../static/books{{contenido}}" type="application/pdf" />
+      {{contenido}}
+      <embed class="read__pdf" src="../static/books/{{contenido}}" type="application/pdf" />
     {%endfor%}
     {%else%}
       <div class="banner__in">

@@ -1,5 +1,5 @@
-const user = document.getElementById("user");
-const pwrd = document.getElementById("password");
+const user = document.getElementById("id_username");
+const pwrd = document.getElementById("id_password");
 
 const evento_vacio = function (element) {
   element.addEventListener('blur', () => {

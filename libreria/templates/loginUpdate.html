@@ -1,7 +1,23 @@
 {%load static%}
-{% include 'layout/app_log.html' %}
-  <main>
-    <script src="{%static 'login.js'%}" defer></script>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <script src="{%static 'login.js'%}" defer></script>
+  <script src="{%static 'buttons.js'%}" defer></script>
+  <title>Biblioteca Virtual</title>
+</head>
+<body>
+  <header class="header">
+    <img src="{% static 'assets/logo_libreria.png' %}" alt="Logo libreria" class="logo">
+    <h1>Datos requeridos</h1>
+  <button id="btnBack" class="boton" title="Regresar">&#8656;</button>
+  </header>
+<body>
+<main>
     <section>
       <div class="cont__form">
         <h1>Ingresa tus datos para acceder a la edición de perfil</h1>
@@ -9,6 +25,7 @@
           {%csrf_token%}
           {{formulario.as_p}}
           <button type='submit' class="form__boton">Ingresar</button>
+          <button type="reset" class="form__boton">Reestablecer</button>
           <p>{{msg}}</p>
           <a href="">Olvidé mi contraseña</a>
         </form>

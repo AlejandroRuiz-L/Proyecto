@@ -7,5 +7,6 @@ urlpatterns = [
     path('validate/', validate, name="Validar"),
     path('loginUpdate/', loginUpdate, name = "LoginUpdate"),
     path('update/', update, name = "Update"),
+    path('dataUpdated', dataUpdated, name = 'Updated'),
     path('deleteAccount', deleteAccount, name = "DeleteAccount")
 ]

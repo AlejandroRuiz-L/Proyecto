@@ -1,0 +1,62 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <script src="{% static 'register.js' %}" defer></script>
+  <script src="{%static 'buttons.js'%}" defer></script>
+  <title>Biblioteca Virtual</title>
+</head>
+<body>
+  <header class="header">
+    <img src="{% static 'assets/logo_libreria.png' %}" alt="Logo libreria" class="logo">
+    <h1>Actualización de perfil</h1>
+  <button id="btnBack" class="boton" title="Regresar">&#8656;</button>
+  </header>
+
+  <section>
+  <div class="cont__form">
+    <br>
+    {%if log%}
+    <h2>Digita los datos que quieres modificar</h2>
+    <br>
+    <form action="{% url 'Updated' %}" method="POST" class="formulario" >
+      {% csrf_token %}
+      {{formulario.as_p}}
+      <p>
+        <label for="books">Libro Favorito: </label>
+        <select name="favoriteBook" id="books">
+          <option value = "" disabled selected>Seleccione un libro</option>
+          {%for book in books%}
+            <option value="{{book.id}}">{{book.title}}</option>
+          {%endfor%}
+        </select>
+      </p>
+      <input type="hidden" name="usuario" value="{{user.user_name}}" />
+      <button type="submit" class="form__boton">Actualizar</button>
+      <button type="reset" class="form__boton">Restablecer</button>
+      <p>{{msg}}</p>
+      </form>
+    </div>
+    <br>
+    <br>
+    <div class="banner__in">
+    <h2>Quieres eliminar tu cuenta?</h2>
+    <br>
+    <h3>Recuerda que esta acción no se puede reestablecer</h3>
+    <br>
+      <form action="{%url 'DeleteAccount'%}" method="POST">
+        {%csrf_token%}
+        <input type="hidden" name="instancia" value="{{user.user_name}}" />
+        <a href="{%url 'DeleteAccount'%}"><button class="button__delete">Eliminar mi cuenta</button></a>
+      </div>
+    {%else%}
+      <h1>!No has iniciado sesión!</h1>
+      <br>
+      <a href="{%url 'Login'%}"><button class="boton">Iniciar Sesión</button></a>
+    {%endif%}
+    </section>
+{% include 'layout/app_footer.html' %}

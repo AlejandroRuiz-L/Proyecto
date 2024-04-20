@@ -91,7 +91,7 @@ a:hover{
 }
 
 .logo{
-  max-width: 215px;
+  max-width: 250px;
   border-radius: 40px;
   border: 2px solid black;
 }
@@ -122,7 +122,7 @@ a:hover{
 }
 
 .fondo{
-  max-width: 240px;
+  max-width: 250px;
   border-radius: 40px;
   border: 3px solid black;
 }
@@ -152,6 +152,23 @@ a:hover{
   transform: scale(1.1);
 }
 
+.button__delete{
+  background: rgb(140, 32, 32);
+  border: 2px solid red;
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+}
+
+.button__delete:hover{
+  background: rgb(196, 23, 23);
+}
+
+.button__delete:active{
+  transform: translate(4px, 4px);
+}
+
 .hidden{
   display: none;
 }
@@ -161,13 +178,13 @@ a:hover{
 }
 
 #menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    list-style-type: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  list-style-type: none;
 }
 
 #menu li {
@@ -175,9 +192,9 @@ a:hover{
 }
 
 #btnMenu {
-    border: 2px solid black;
-    background-color: rgb(152, 221, 255);
-    cursor: pointer;
+  border: 2px solid black;
+  background-color: rgb(152, 221, 255);
+  cursor: pointer;
 }
 
 .aside{
