@@ -1,0 +1,19 @@
+{%load static%}
+{% include 'layout/app_log.html' %}
+  <main>
+    <script src="{%static 'login.js'%}" defer></script>
+    <section>
+      <div class="cont__form">
+        <h1>Ingresa tus datos para acceder a la edición de perfil</h1>
+        <form action="{% url 'Validar' %}" method="POST" class="formulario">
+          {%csrf_token%}
+          {{formulario.as_p}}
+          <button type='submit' class="form__boton">Ingresar</button>
+          <p>{{msg}}</p>
+          <a href="">Olvidé mi contraseña</a>
+        </form>
+        <br>
+      </div>
+    </section>
+  </main>
+{% include 'layout/app_footer.html' %}
