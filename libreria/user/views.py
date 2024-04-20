@@ -32,7 +32,7 @@ def validate_password(password):
   return flag
 
 def validate(request):
-  msg = ""
+  #msg = ""
   if request.method == 'POST':
     if request.POST.get('form_type') == 'Registro':
       form = Form_Register(request.POST)
@@ -76,6 +76,7 @@ def validate(request):
       for i in User.objects.all():
         if username == i.user_name and password == i.password:
           log = True
+          break
       if log:
         user_log = User.objects.get(user_name=username)
         #return homeLog(request, user_log)
@@ -83,6 +84,27 @@ def validate(request):
       else:
         msg="Usuario o contraseña incorrectos"
         return render(request, 'login.html', {'msg':msg, 'formulario':form})
+    if request.POST.get('form_type') == 'LoginUpdate':
+      f = Form_Login(request.POST)
+      user = request.POST.get('username')
+      password = request.POST.get('password')
+      log = False
+      for i in User.objects.all():
+        if username == i.user_name and password == i.password:
+          log = True
+          break
+      if log:
+        user_log = User.objects.get(user_name=user)
+        return render(request, 'update.html', {'user':user_log})
+      else:
+        msg="Usuario o contraseña incorrectos"
+        return render(request, 'loginUpdate.html', {'msg':msg, 'formulario':f})
 
 def recuperar(request):
-  user = request
+  user = request.POST.get('username')
+
+def loginUpdate(request):
+  f = Form_Login(initial={'form_type':'LoginUpdate'})
+  #user = request.POST.get('username')
+  
+  return render(request, 'loginUpdate.html', {})
