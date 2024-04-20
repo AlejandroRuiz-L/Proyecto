@@ -5,5 +5,7 @@ urlpatterns = [
     path('', login, name = 'Login'),
     path('registro/', registro, name = 'Registro'),
     path('validate/', validate, name="Validar"),
-    path('update/', update, name = "Update")
+    path('loginUpdate/', loginUpdate, name = "LoginUpdate"),
+    path('update/', update, name = "Update"),
+    path('deleteAccount', deleteAccount, name = "DeleteAccount")
 ]
