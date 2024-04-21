@@ -168,4 +168,4 @@ def deleteAccount(request):
     log = False
     msg = "!El usuario no existe!"
 
-  return render(request, 'deleteAccount.html', {'msg':msg})
+  return render(request, 'deleteAccount.html', {'msg':msg, 'log':log})

@@ -3,7 +3,9 @@
   <section>
   <script src="{% static 'register.js' %}" defer></script>
   <div class="cont__form">
-    <h2>Crea tu cuenta en nuestra libreria</h2>
+    <br>
+    <h1>Crea tu cuenta en nuestra libreria</h1>
+    <br>
     <form action="{% url 'Validar' %}" method="POST" class="formulario" >
       {% csrf_token %}
       {{formulario.as_p}}

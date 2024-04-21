@@ -16,7 +16,7 @@ const evento_vacio = function (element) {
 
 const minimo = function (element) {
   element.addEventListener('blur', () => {
-    if (!element.value.length >= 8) {
+    if (element.value.length < 8) {
       element.style.borderColor = 'salmon';
     } else {
       element.style.borderColor = 'skyblue';
