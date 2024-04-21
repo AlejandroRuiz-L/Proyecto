@@ -31,18 +31,21 @@ def validate_password(password):
     flag = True
   return flag
 
-def update(request):
+def update(request, user="", m=""):
   u = request.POST.get('username')
   log = True
   try:
     user = User.objects.get(user_name=u)
   except:
-    log = False
+    try:
+      u = user
+    except:
+      log = False
     return render(request, 'update.html', {'log':log})
   f = Form_Register(initial={'form_type':'Update', 'first_name':user.first_name, 'last_name':user.last_name, 'user_name':user.user_name, 'password':user.password, 'email':user.email, 'document':user.document, 'likes':user.likes})
   books = Book.objects.all()
 
-  return render(request, 'update.html', {'formulario':f, 'user':user, 'log':log, 'books':books})
+  return render(request, 'update.html', {'formulario':f, 'user':user, 'log':log, 'books':books, 'msg':m})
 
 def validate(request):
   #msg = ""
@@ -134,11 +137,19 @@ def dataUpdated(request):
   except:
     msg = "!El usuario no existe!"
     return render(request, 'notFound.html', {'msg':msg})
+  userName = request.POST.get('user_name')
+  email = request.POST.get('email')
+  emails = []
+  userNames = []
+  for i in User.objects.all():
+    emails.append(i.email)
+    userNames.append(i.user_name)
+  if userName in userNames or email in emails:
+    msg = "El usuario o el email ya existe"
+    return update(request, user = user, m = msg)
   firstName = request.POST.get('first_name')
   lastName = request.POST.get('last_name')
-  userName = request.POST.get('user_name')
   password = request.POST.get('password')
-  email = request.POST.get('email')
   doc = request.POST.get('document')
   document = DocumentType.objects.get(id=doc)
   like = request.POST.get('likes')

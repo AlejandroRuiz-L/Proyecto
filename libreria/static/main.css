@@ -66,6 +66,10 @@ h1{
   /*background-image: url("../static/assets/papiro.png");*/
 }
 
+body{
+  min-height: auto;
+}
+
 p{
   font-size: 1.5rem;
 }

@@ -1,8 +1,8 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render#, HttpResponse, redirect
 from biblioteca.models import *
 from user.views import User#Validates
 #from user.models import User, DocumentType
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 from .form import Form_Login
 #from django.views.decorators.csrf import csrf_protect
 #rom django.utils.decorators import method_decorator
