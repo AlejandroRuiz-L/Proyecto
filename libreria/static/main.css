@@ -277,6 +277,7 @@ a:hover{
   margin-top: 3%;
   align-items: center;
   box-sizing: border-box;
+  transition: .8s;
 }
 
 .contenedor__info{
